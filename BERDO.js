@@ -64,7 +64,7 @@ var config = {
                 center: [-71.07343, 42.33577],
                 zoom: 16.94,
                 pitch: 85,
-                bearing: 70.98
+                bearing: -70.98
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
@@ -215,6 +215,36 @@ var config = {
                 zoom: 18.05,
                 pitch: 85,
                 bearing: 41.86
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
+                }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+         {
+            id: 'eigth-chapter',
+            alignment: 'right',
+            hidden: false,
+            title: 'Franciscian Childrens Hospital',
+            image: './assets/san-fran.jpeg',
+            description: 'Score: 100',
+            location: {
+                center: [-71.14410, 42.35044],
+                zoom: 18.05,
+                pitch: 85,
+                bearing: 34.54
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
