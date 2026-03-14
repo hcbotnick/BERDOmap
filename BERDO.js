@@ -181,7 +181,7 @@ var config = {
             image: './BERDO/assets/san-fran.jpeg',
             description: 'Score: 57',
             location: {
-                center: [-71.10513, 42.33695]],
+                center: [-71.10513, 42.33695],
                 zoom: 17.35,
                 pitch: 85,
                 bearing: -172.99
