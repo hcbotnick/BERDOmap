@@ -174,7 +174,7 @@ var config = {
             ]
         },
         {
-            id: 'Sixth-chapter',
+            id: 'sixth-chapter',
             alignment: 'right',
             hidden: false,
             title: 'Boston Childrens Hospital',
@@ -204,6 +204,5 @@ var config = {
             ]
         },
     ]}
-}
         
     
