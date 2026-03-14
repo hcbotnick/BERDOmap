@@ -92,7 +92,7 @@ var config = {
             description: 'Score: 9',
             location: {
                 center: [-71.10596, 42.34004],
-                zoom: 17.13,
+                zoom: 18.13,
                 pitch: 84,
                 bearing: 122.36
             },
