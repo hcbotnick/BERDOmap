@@ -182,7 +182,7 @@ var config = {
             description: 'Score: 57',
             location: {
                 center: [-71.10528, 42.33667],
-                zoom: 16.55,
+                zoom: 17.55,
                 pitch: 85,
                 bearing: 0
             },
