@@ -181,10 +181,10 @@ var config = {
             image: './assets/san-fran.jpeg',
             description: 'Score: 57',
             location: {
-                center: [-71.10501, 42.33723],
+                center: [-71.10525, 42.33693],
                 zoom: 16.76,
                 pitch: 85,
-                bearing: 148.61
+                bearing: 100.61
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
