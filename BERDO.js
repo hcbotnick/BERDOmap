@@ -181,7 +181,7 @@ var config = {
             image: './assets/san-fran.jpeg',
             description: 'Score: 57',
             location: {
-                center: [-71.10593, 42.33676],
+                center: [-71.10563, 42.33708],
                 zoom: 16.76,
                 pitch: 85,
                 bearing: 84.50
