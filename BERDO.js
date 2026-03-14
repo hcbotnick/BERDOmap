@@ -27,7 +27,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'Brigham and Womens Medical Center',
-            image: './assets/san-fran.jpeg',
+            //image: './assets/san-fran.jpeg',//
             description: 'Score: 1',
             location: {
                 center: [-71.12861, 42.30239],
