@@ -58,7 +58,7 @@ var config = {
         },
         {
             id: 'second-chapter',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'Boston Medical Center',
             image: './assets/san-fran.jpeg',
@@ -118,7 +118,7 @@ var config = {
         },
         {
             id: 'fourth-chapter',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'Massachusetts General Hospital',
             image: './assets/san-fran.jpeg',
