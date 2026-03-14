@@ -55,7 +55,7 @@ var config = {
         },
         {
             id: 'second-chapter',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'Boston Medical Center',
             image: './assets/san-fran.jpeg',
@@ -115,7 +115,7 @@ var config = {
         },
         {
             id: 'fourth-chapter',
-            alignment: 'left',
+            alignment: 'rigjt',
             hidden: false,
             title: 'Massachusetts General Hospital',
             image: './assets/san-fran.jpeg',
@@ -185,6 +185,36 @@ var config = {
                 zoom: 17.55,
                 pitch: 85,
                 bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
+                }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+         {
+            id: 'seventh-chapter',
+            alignment: 'left',
+            hidden: false,
+            title: 'New England Baptist Hospital',
+            image: './assets/san-fran.jpeg',
+            description: 'Score: 63',
+            location: {
+                center: [-71.10774, 42.32974],
+                zoom: 17.05,
+                pitch: 85,
+                bearing: 41.86
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
