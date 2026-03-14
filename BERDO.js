@@ -178,7 +178,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Boston Childrens Hospital',
-            image: './BERDO/assets/san-fran.jpeg',
+            image: './assets/san-fran.jpeg',
             description: 'Score: 57',
             location: {
                 center: [-71.10513, 42.33695],
@@ -204,5 +204,6 @@ var config = {
             ]
         },
     ]}
+}
         
     
