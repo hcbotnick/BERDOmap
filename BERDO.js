@@ -115,7 +115,7 @@ var config = {
         },
         {
             id: 'fourth-chapter',
-            alignment: 'rigjt',
+            alignment: 'right',
             hidden: false,
             title: 'Massachusetts General Hospital',
             image: './assets/san-fran.jpeg',
