@@ -57,7 +57,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Boston Medical Center',
-            image: './assets/san-fran.jpeg',
+            //image: './assets/san-fran.jpeg',//
             description: 'Score: 8',
             location: {
                 center: [-71.07388, 42.33387],
@@ -87,7 +87,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'Beth Israel Deaconess Medical Center',
-            image: './assets/san-fran.jpeg',
+            //image: './assets/san-fran.jpeg',//
             description: 'Score: 9',
             location: {
                 center: [-71.10596, 42.34004],
@@ -117,7 +117,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Massachusetts General Hospital',
-            image: './assets/san-fran.jpeg',
+            //image: './assets/san-fran.jpeg',//
             description: 'Score: 11',
             location: {
                 center: [-71.06952, 42.36366],
@@ -147,7 +147,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'Shriners Hospital for Children',
-            image: './assets/san-fran.jpeg',
+            //image: './assets/san-fran.jpeg',//
             description: 'Score: 47',
             location: {
                 center: [-71.06636, 42.36296],
@@ -177,7 +177,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Boston Childrens Hospital',
-            image: './assets/san-fran.jpeg',
+            //image: './assets/san-fran.jpeg',//
             description: 'Score: 57',
             location: {
                 center: [-71.10528, 42.33667],
@@ -207,7 +207,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'New England Baptist Hospital',
-            image: './assets/san-fran.jpeg',
+           // image: './assets/san-fran.jpeg',//
             description: 'Score: 63',
             location: {
                 center: [-71.10774, 42.32974],
@@ -237,7 +237,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Franciscian Childrens Hospital',
-            image: './assets/san-fran.jpeg',
+            //image: './assets/san-fran.jpeg',//
             description: 'Score: 100',
             location: {
                 center: [-71.14387, 42.35015],
