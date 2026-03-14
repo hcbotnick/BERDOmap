@@ -122,7 +122,7 @@ var config = {
             description: 'Score: 11',
             location: {
                 center: [-71.06952, 42.36366],
-                zoom: 18.33,
+                zoom: 17.33,
                 pitch: 79.5,
                 bearing: 131.01
             },
@@ -152,7 +152,7 @@ var config = {
             description: 'Score: 47',
             location: {
                 center: [-71.06636, 42.36296],
-                zoom: 18.92,
+                zoom: 17.92,
                 pitch: 85,
                 bearing: -151.31
             },
