@@ -2,7 +2,7 @@ var config = {
     // style: 'mapbox://styles/mapbox/streets-v12',
     // leave commented to use Mapbox Standard Style
     accessToken: 'pk.eyJ1IjoiaGJvdG5pY2siLCJhIjoiY21tbnJyaXJhMDYyZjJyb2tnczVsOTM4dSJ9.W9qfSgTiWPBOlcxAQcClhg',
-    style: 'mapbox://styles/hbotnick/cmmofidyp004r01s19oyacgxp'
+    style: 'mapbox://styles/hbotnick/cmmofidyp004r01s19oyacgxp',
     showMarkers: true,
     
     markerColor: '#3FB1CE',
