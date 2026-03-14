@@ -175,7 +175,7 @@ var config = {
         },
         {
             id: 'sixth-chapter',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'Boston Childrens Hospital',
             image: './assets/san-fran.jpeg',
