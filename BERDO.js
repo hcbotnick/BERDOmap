@@ -18,10 +18,9 @@ var config = {
     theme: 'dark',
     use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
-    title: 'Your Title Goes Here',
-    subtitle: 'The Storytelling Template helps you create an awesome animated map story with ease.',
-    byline: 'By a I.M. Amapper',
-    footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
+    title: 'Where do Boston Hospitals Score?',
+    subtitle: 'Scroll to see different hospitals throughout Boston, and how their energy usage compares to others.',
+    footer: 'Visualization by Hayes Botnick. Data by the City of Boston.',
     chapters: [
         {
             id: 'first-chapter',
