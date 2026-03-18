@@ -82,12 +82,6 @@
             margin-left: 62vw;
         }
 
-        /* Custom size for the chapter with id="seventh-chapter" */
-        #seventh-chapter {
-            /* adjust width as needed */
-                width: 50vw;
-                margin: 20px;
-        }
 
         .fully {
             width: 100%;
@@ -325,9 +319,26 @@
                 .onStepEnter(async response => {
                     var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
                     var chapter = config.chapters[current_chapter];
+                    var chapterLocation = {
+                        ...chapter.location,
+                        essential: true
+                    };
+
+                    if (chapter.rotateAnimation) {
+                        map.once('moveend', () => {
+                            const rotateNumber = map.getBearing();
+                            map.rotateTo(rotateNumber + 180, {
+                                duration: 30000,
+                                essential: true,
+                                easing: function (t) {
+                                    return t;
+                                }
+                            });
+                        });
+                    }
 
                     response.element.classList.add('active');
-                    map[chapter.mapAnimation || 'flyTo'](chapter.location);
+                    map[chapter.mapAnimation || 'flyTo'](chapterLocation);
 
                     if (config.showMarkers) {
                         marker.setLngLat(chapter.location.center);
@@ -337,16 +348,6 @@
                     }
                     if (chapter.callback) {
                         window[chapter.callback]();
-                    }
-                    if (chapter.rotateAnimation) {
-                        map.once('moveend', () => {
-                            const rotateNumber = map.getBearing();
-                            map.rotateTo(rotateNumber + 180, {
-                                duration: 30000, easing: function (t) {
-                                    return t;
-                                }
-                            });
-                        });
                     }
                     if (config.auto) {
                         var next_chapter = (current_chapter + 1) % config.chapters.length;
