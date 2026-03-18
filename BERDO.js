@@ -87,7 +87,7 @@ var config = {
             description: 'This Hospital had the lowest possible score of 1. A spokesperson could not be reached for comment.',
             location: {
                 center: [-71.12861, 42.30150],
-                zoom: 18,
+                zoom: 17.5,
                 pitch: 0,
                 bearing: 0
             },
@@ -145,7 +145,7 @@ var config = {
             description: '<b>“Being a hospital, we have so much going on that just happens to be fairly energy-intensive compared with almost any other type of building,”</b>said Brian Smith, Senior Manager of Energy, Building Systems, and Sustainability.',
             location: {
                 center: [-71.10600, 42.33700],
-                zoom: 18,
+                zoom: 17.5,
                 pitch: 0,
                 bearing: 0
             },
@@ -174,7 +174,7 @@ var config = {
             description: 'Some smaller or less energy-intensive facilities perform significantly better. <b>Franciscan Children’s Hospital,</b> located in Brighton, received an Energy Star score of 100 out of 100, placing it among the highest-performing healthcare buildings in the dataset.',
             location: {
                 center: [-71.14387, 42.35015],
-                zoom: 18,
+                zoom: 17.5,
                 pitch: 0,
                 bearing: 0
             },
