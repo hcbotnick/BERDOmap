@@ -1,377 +1,320 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset='utf-8' />
-    <title>Mapbox Storytelling</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link rel="icon" type="image/x-icon"
-        href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css' rel='stylesheet' />
-    <script src="https://cdn.jsdelivr.net/npm/mapbox-gl-globe-minimap@1.2.0/dist/bundle.js"></script>
-    <script src="https://unpkg.com/scrollama"></script>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-
-        a,
-        a:hover,
-        a:visited {
-            color: #0071bc;
-        }
-
-        #map {
-            top: 0;
-            height: 100vh;
-            width: 100vw;
-            position: fixed;
-        }
-
-        #header {
-            margin: auto;
-            width: 100%;
-            position: relative;
-            z-index: 5;
-        }
-
-        #header h1,
-        #header h2,
-        #header p {
-            margin: 0;
-            padding: 2vh 2vw;
-            text-align: center;
-        }
-
-        #footer {
-            width: 100%;
-            min-height: 5vh;
-            padding-top: 2vh;
-            padding-bottom: 2vh;
-            text-align: center;
-            line-height: 25px;
-            font-size: 13px;
-            position: relative;
-            z-index: 5;
-        }
-
-        #features {
-            padding-top: 10vh;
-            padding-bottom: 10vh;
-        }
-
-        .hidden {
-            visibility: hidden;
-        }
-
-        .centered {
-            width: 50vw;
-            margin: 0 auto;
-        }
-
-        .lefty {
-            width: 33vw;
-            margin-left: 5vw;
-        }
-
-        .righty {
-            width: 33vw;
-            margin-left: 62vw;
-        }
-
-
-        .fully {
-            width: 100%;
-            margin: auto;
-        }
-
-        .light {
-            color: #444;
-            background-color: #fafafa;
-        }
-
-        .dark {
-            color: #fafafa;
-            background-color: #444;
-        }
-
-        .step {
-            padding-bottom: 50vh;
-            /* margin-bottom: 10vh; */
-            opacity: 0.5;
-        }
-
-        .step.active {
-            opacity: 0.9;
-            top: 1vh;
-        }
-
-
-        .step div {
-            padding: 25px 50px;
-            line-height: 25px;
-            font-size: 13px;
-            background-color: gray;
-            border-radius: 20px;
-        }
-
-        .step img {
-            border-radius: 20px;
-            width: 100%;
-        }
-
-        @media (max-width: 750px) {
-
-            .centered,
-            .lefty,
-            .righty,
-            .fully {
-                width: 90vw;
-                margin: 0 auto;
-            }
-        }
-
-        /* Fix issue on mobile browser where scroll breaks  */
-        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
-        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
-            touch-action: unset;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div id="map"></div>
-    <div id="story"></div>
-
-    <script src="./BERDO.js"></script>
-    <script>
-        var initLoad = true;
-        var layerTypes = {
-            'fill': ['fill-opacity'],
-            'line': ['line-opacity'],
-            'circle': ['circle-opacity', 'circle-stroke-opacity'],
-            'symbol': ['icon-opacity', 'text-opacity'],
-            'raster': ['raster-opacity'],
-            'fill-extrusion': ['fill-extrusion-opacity'],
-            'heatmap': ['heatmap-opacity']
-        }
-        
-        var alignments = {
-            'left': 'lefty',
-            'center': 'centered',
-            'right': 'righty',
-            'full': 'fully'
-        }
-
-        function getLayerPaintType(layer) {
-            var layerType = map.getLayer(layer).type;
-            return layerTypes[layerType];
-        }
-
-        function setLayerOpacity(layer) {
-            var paintProps = getLayerPaintType(layer.layer);
-            paintProps.forEach(function (prop) {
-                var options = {};
-                if (layer.duration) {
-                    var transitionProp = prop + "-transition";
-                    options = { "duration": layer.duration };
-                    map.setPaintProperty(layer.layer, transitionProp, options);
+var config = {
+    // style: 'mapbox://styles/mapbox/streets-v12',
+    // leave commented to use Mapbox Standard Style
+    accessToken: 'pk.eyJ1IjoiaGJvdG5pY2siLCJhIjoiY21tbnJyaXJhMDYyZjJyb2tnczVsOTM4dSJ9.W9qfSgTiWPBOlcxAQcClhg',
+    style: 'mapbox://styles/hbotnick/cmmofidyp004r01s19oyacgxp',
+    showMarkers: true,
+    
+    markerColor: '#3FB1CE',
+    //projection: 'equirectangular',
+    //Read more about available projections here
+    //https://docs.mapbox.com/mapbox-gl-js/example/projections/
+    inset: true,
+    
+    insetOptions: {
+        markerColor: 'orange'
+    },
+    insetPosition: 'bottom-right',
+    theme: 'dark',
+    use3dTerrain: false, //set true for enabling 3D maps.
+    auto: false,
+    title: 'Where do Boston Hospitals Score?',
+    footer: 'Visualization by Hayes Botnick. Data by the City of Boston.',
+    chapters: [
+        {
+            id: 'first-chapter',
+            alignment: 'right',
+            hidden: false,
+            title: 'Most buildings in Boston — 79,5% of the properties in the BERDO dataset — fall into two categories: Multifamily housing and office buildings.',
+            location: {
+                center: [-71.07148, 42.34628],
+                zoom: 10.99,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
                 }
-                map.setPaintProperty(layer.layer, prop, layer.opacity, options);
-            });
-        }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+        {
+            id: 'second-chapter',
+            alignment: 'right',
+            hidden: false,
+            title: 'These buildings tend to perform relatively well in the city’s energy data, with an average Energy Star score of  71. Hospitals tell a different story.',
+            description:  'In Boston’s building emissions data, hospitals average an Energy Star score of 54, well below many other building types in the city. Several medical facilities rank far lower.',
 
-        var story = document.getElementById('story');
-        var features = document.createElement('div');
-        features.setAttribute('id', 'features');
-
-        var header = document.createElement('div');
-
-        if (config.title) {
-            var titleText = document.createElement('h1');
-            titleText.innerText = config.title;
-            header.appendChild(titleText);
-        }
-
-        if (config.subtitle) {
-            var subtitleText = document.createElement('h2');
-            subtitleText.innerText = config.subtitle;
-            header.appendChild(subtitleText);
-        }
-
-        if (config.byline) {
-            var bylineText = document.createElement('p');
-            bylineText.innerText = config.byline;
-            header.appendChild(bylineText);
-        }
-
-        if (header.innerText.length > 0) {
-            header.classList.add(config.theme);
-            header.setAttribute('id', 'header');
-            story.appendChild(header);
-        }
-
-        config.chapters.forEach((record, idx) => {
-            var container = document.createElement('div');
-            var chapter = document.createElement('div');
-
-            if (record.title) {
-                var title = document.createElement('h3');
-                title.innerText = record.title;
-                chapter.appendChild(title);
-            }
-
-            if (record.image) {
-                var image = new Image();
-                image.src = record.image;
-                chapter.appendChild(image);
-            }
-
-            if (record.description) {
-                var story = document.createElement('p');
-                story.innerHTML = record.description;
-                chapter.appendChild(story);
-            }
-
-            container.setAttribute('id', record.id);
-            container.classList.add('step');
-            if (idx === 0) {
-                container.classList.add('active');
-            }
-
-            chapter.classList.add(config.theme);
-            container.appendChild(chapter);
-            container.classList.add(alignments[record.alignment] || 'centered');
-            if (record.hidden) {
-                container.classList.add('hidden');
-            }
-            features.appendChild(container);
-        });
-
-        story.appendChild(features);
-
-        var footer = document.createElement('div');
-
-        if (config.footer) {
-            var footerText = document.createElement('p');
-            footerText.innerHTML = config.footer;
-            footer.appendChild(footerText);
-        }
-
-        if (footer.innerText.length > 0) {
-            footer.classList.add(config.theme);
-            footer.setAttribute('id', 'footer');
-            story.appendChild(footer);
-        }
-
-        mapboxgl.accessToken = config.accessToken;
-
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: config.style,
-            center: config.chapters[0].location.center,
-            zoom: config.chapters[0].location.zoom,
-            bearing: config.chapters[0].location.bearing,
-            pitch: config.chapters[0].location.pitch,
-            interactive: false,
-            projection: config.projection
-        });
-
-
-        // instantiate the scrollama
-        var scroller = scrollama();
-
-
-        map.on("load", function () {
-            if (config.use3dTerrain) {
-                map.addSource('mapbox-dem', {
-                    'type': 'raster-dem',
-                    'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-                    'tileSize': 512,
-                    'maxzoom': 14
-                });
-                // add the DEM source as a terrain layer with exaggerated height
-                map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-
-                // add a sky layer that will show when the map is highly pitched
-                map.addLayer({
-                    'id': 'sky',
-                    'type': 'sky',
-                    'paint': {
-                        'sky-type': 'atmosphere',
-                        'sky-atmosphere-sun': [0.0, 0.0],
-                        'sky-atmosphere-sun-intensity': 15
-                    }
-                });
-            };
-
-            // setup the instance, pass callback functions
-            scroller
-                .setup({
-                    step: '.step',
-                    offset: 0.5,
-                    progress: true
-                })
-                .onStepEnter(async response => {
-                    var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
-                    var chapter = config.chapters[current_chapter];
-                    var chapterLocation = {
-                        ...chapter.location,
-                        essential: true
-                    };
-
-                    if (chapter.rotateAnimation) {
-                        map.once('moveend', () => {
-                            const rotateNumber = map.getBearing();
-                            map.rotateTo(rotateNumber + 180, {
-                                duration: 30000,
-                                essential: true,
-                                easing: function (t) {
-                                    return t;
-                                }
-                            });
-                        });
-                    }
-
-                    response.element.classList.add('active');
-                    map[chapter.mapAnimation || 'flyTo'](chapterLocation);
-
-                    if (config.showMarkers) {
-                        marker.setLngLat(chapter.location.center);
-                    }
-                    if (chapter.onChapterEnter.length > 0) {
-                        chapter.onChapterEnter.forEach(setLayerOpacity);
-                    }
-                    if (chapter.callback) {
-                        window[chapter.callback]();
-                    }
-                    if (config.auto) {
-                        var next_chapter = (current_chapter + 1) % config.chapters.length;
-                        map.once('moveend', () => {
-                            document.querySelectorAll('[data-scrollama-index="' + next_chapter.toString() + '"]')[0].scrollIntoView();
-                        });
-                    }
-                })
-                .onStepExit(response => {
-                    var chapter = config.chapters.find(chap => chap.id === response.element.id);
-                    response.element.classList.remove('active');
-                    if (chapter.onChapterExit.length > 0) {
-                        chapter.onChapterExit.forEach(setLayerOpacity);
-                    }
-                });
-
-
-            if (config.auto) {
-                document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
-            }
-        });    
-
-    </script>
-
-</body>
-
-</html>
+            location: {
+                center: [-71.06858, 42.34425],
+                zoom: 15,
+                pitch: 60.5,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
+                }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+        {
+            id: 'third-chapter',
+            alignment: 'left',
+            hidden: false,
+            title: 'Brigham and Womens Medical Center',
+            description: 'This Hospital had the lowest possible score of 1. A spokesperson could not be reached for comment.',
+            location: {
+                center: [-71.12861, 42.30150],
+                zoom: 18,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
+                }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+        {
+            id: 'fourth-chapter',
+            alignment: 'right',
+            hidden: false,
+            title: 'Boston Medical Center also appears near the bottom of the rankings, with a score of 8.',
+            description: 'The hospital owns several properties included in the dataset, including the one complex and the <b>Moakley Building</b> in the South End, both of which received Energy Star scores of 8 out of 100, placing them among the lowest-performing medical facilities in the city.<br>The hospital declined to comment on questions about the buildings’ energy performance, their low Energy Star scores, or any plans to reduce emissions from those facilities.',
+            location: {
+                center: [-71.07388, 42.33425],
+                zoom: 17,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
+                }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+        {
+            id: 'fifth-chapter',
+            alignment: 'left',
+            hidden: false,
+            title: 'Boston Childrens Hospital had a score of 18.',
+            description: '<b>“Being a hospital, we have so much going on that just happens to be fairly energy-intensive compared with almost any other type of building,”</b>said Brian Smith, Senior Manager of Energy, Building Systems, and Sustainability.',
+            location: {
+                center: [-71.10600, 42.33700],
+                zoom: 18,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
+                }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+        {
+            id: 'sixth-chapter',
+            alignment: 'right',
+            hidden: false,
+            title: 'Not all hospitals in Boston fall at the bottom of the rankings.',
+            description: 'Some smaller or less energy-intensive facilities perform significantly better. <b>Franciscan Children’s Hospital,</b> located in Brighton, received an Energy Star score of 100 out of 100, placing it among the highest-performing healthcare buildings in the dataset.',
+            location: {
+                center: [-71.14387, 42.35015],
+                zoom: 18,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                {
+                layer: 'layer-name',
+                opacity: .5
+                }
+            ],
+            onChapterExit: [
+                {
+                layer: 'layer-name',
+                opacity: 1,
+                duration: 5000
+                }
+            ]
+        },
+        // {
+        //     id: 'fifth-chapter',
+        //     alignment: 'left',
+        //     hidden: false,
+        //     title: 'Beth Israel Deaconess Medical Center',
+        //     //image: './assets/san-fran.jpeg',//
+        //     description: 'Score: 9',
+        //     location: {
+        //         center: [-71.10596, 42.34004],
+        //         zoom: 18.13,
+        //         pitch: 84,
+        //         bearing: 122.36
+        //     },
+        //     mapAnimation: 'flyTo',
+        //     rotateAnimation: false,
+        //     callback: '',
+        //     onChapterEnter: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: .5
+        //         }
+        //     ],
+        //     onChapterExit: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: 1,
+        //         duration: 5000
+        //         }
+        //     ]
+        // },
+        // {
+        //     id: 'fifth-chapter',
+        //     alignment: 'right',
+        //     hidden: false,
+        //     title: 'Massachusetts General Hospital',
+        //     //image: './assets/san-fran.jpeg',//
+        //     description: 'Score: 11',
+        //     location: {
+        //         center: [-71.06952, 42.36366],
+        //         zoom: 17.33,
+        //         pitch: 79.5,
+        //         bearing: 131.01
+        //     },
+        //     mapAnimation: 'flyTo',
+        //     rotateAnimation: false,
+        //     callback: '',
+        //     onChapterEnter: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: .5
+        //         }
+        //     ],
+        //     onChapterExit: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: 1,
+        //         duration: 5000
+        //         }
+        //     ]
+        // },
+        //  {
+        //     id: 'sixth-chapter',
+        //     alignment: 'left',
+        //     hidden: false,
+        //     title: 'Shriners Hospital for Children',
+        //     //image: './assets/san-fran.jpeg',//
+        //     description: 'Score: 47',
+        //     location: {
+        //         center: [-71.06636, 42.36296],
+        //         zoom: 17.92,
+        //         pitch: 85,
+        //         bearing: -151.31
+        //     },
+        //     mapAnimation: 'flyTo',
+        //     rotateAnimation: false,
+        //     callback: '',
+        //     onChapterEnter: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: .5
+        //         }
+        //     ],
+        //     onChapterExit: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: 1,
+        //         duration: 5000
+        //         }
+        //     ]
+        // },
+        // {
+        //     id: 'eighth-chapter',
+        //     alignment: 'left',
+        //     hidden: false,
+        //     title: 'New England Baptist Hospital',
+        //    // image: './assets/san-fran.jpeg',//
+        //     description: 'Score: 63',
+        //     location: {
+        //         center: [-71.10774, 42.32974],
+        //         zoom: 18.05,
+        //         pitch: 85,
+        //         bearing: 41.86
+        //     },
+        //     mapAnimation: 'flyTo',
+        //     rotateAnimation: false,
+        //     callback: '',
+        //     onChapterEnter: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: .5
+        //         }
+        //     ],
+        //     onChapterExit: [
+        //         {
+        //         layer: 'layer-name',
+        //         opacity: 1,
+        //         duration: 5000
+        //         }
+        //     ]
+        // },
+    ]}
+        
+    
