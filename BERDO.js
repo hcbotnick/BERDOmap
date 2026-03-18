@@ -19,7 +19,7 @@ var config = {
     use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
     title: 'Where do Boston Hospitals Score?',
-    subtitle: 'Scroll to see different hospitals throughout Boston, and how their energy usage compares to others.',
+    subtitle: 'Most buildings in Boston — 79,5% of the properties in the BERDO dataset — fall into two categories: multifamily housing and office buildings. These buildings tend to perform relatively well in the city’s energy data, with an average Energy Star score of  71. Hospitals tell a different story. In Boston’s building emissions data, hospitals average an Energy Star score of 54, well below many other building types in the city. Several medical facilities rank far lower.',
     footer: 'Visualization by Hayes Botnick. Data by the City of Boston.',
     chapters: [
         {
@@ -27,7 +27,6 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'Brigham and Womens Medical Center',
-            //image: './assets/san-fran.jpeg',//
             description: 'Score: 1',
             location: {
                 center: [-71.12861, 42.30239],
