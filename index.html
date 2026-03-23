@@ -12,10 +12,13 @@
     <script src="https://cdn.jsdelivr.net/npm/mapbox-gl-globe-minimap@1.2.0/dist/bundle.js"></script>
     <script src="https://unpkg.com/scrollama"></script>
     <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+    <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: sans-serif;
+            font-family: Montserrat;
         }
 
         a,
@@ -34,8 +37,9 @@
         #header {
             margin: auto;
             width: 100%;
-            position: relative;
+            position: fixed;
             z-index: 5;
+            font-size:x-large;
         }
 
         #header h1,
@@ -44,9 +48,15 @@
             margin: 0;
             padding: 2vh 2vw;
             text-align: center;
+            font-weight: 300;
+        }
+        h2, h3, h4, p {
+            font-weight: 500;
+            font-size: 30px;
+            color: black;
         }
 
-        #footer {
+        #footer, #footer p {
             width: 100%;
             min-height: 5vh;
             padding-top: 2vh;
@@ -56,11 +66,9 @@
             font-size: 13px;
             position: relative;
             z-index: 5;
-        }
-
-        #features {
-            padding-top: 10vh;
-            padding-bottom: 10vh;
+            color: white;
+            font-size: 30px;
+            font-weight: 200;
         }
 
         .hidden {
@@ -72,16 +80,7 @@
             margin: 0 auto;
         }
 
-        .lefty {
-            width: 33vw;
-            margin-left: 5vw;
-        }
-
-        .righty {
-            width: 33vw;
-            margin-left: 62vw;
-        }
-
+    
 
         .fully {
             width: 100%;
@@ -99,28 +98,37 @@
         }
 
         .step {
+            padding-top:100vh;
             padding-bottom: 50vh;
             /* margin-bottom: 10vh; */
             opacity: 0.5;
         }
 
         .step.active {
-            opacity: 0.9;
+            opacity: .99;
             top: 1vh;
         }
 
 
-        .step div {
-            padding: 25px 50px;
-            line-height: 25px;
-            font-size: 13px;
-            background-color: #224050;
-            border-radius: 20px;
-        }
+    .step div {
+        padding: 25px 50px;
+        text-align: center;
+        line-height: 25px;
+        font-size: 13px;
+        background-color: white;
+        overflow: hidden;
+        box-sizing: border-box;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.18);
+    }
 
         .step img {
+            display: block;
+            width: 50%;
+            max-width: 100%;
+            height: auto;
             border-radius: 20px;
-            width: 100%;
+            margin: auto;
         }
 
         @media (max-width: 750px) {
