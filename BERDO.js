@@ -87,6 +87,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'Brigham and Womens Medical Center',
+            image: './BW.JPG',
             description: 'This Hospital had the lowest possible score of 1. A spokesperson could not be reached for comment.',
             location: {
                 center: [-71.12861, 42.30150],
