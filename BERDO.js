@@ -26,7 +26,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Most buildings in Boston — 79.5% of the properties in the BERDO dataset — fall into two categories:',
-            image: './Houses.png',
+           // image: './Houses.png',
             description: 'These buildings tend to perform relatively well in the city’s energy data, with an average Energy Star score of  71.',
             location: {
                 center: [-71.07148, 42.34628],
@@ -56,7 +56,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title:  'Hospitals tell a different story.',
-            image: './hospitalgraphic.png',
+            //image: './hospitalgraphic.png',
             description:  'In Boston’s building emissions data, hospitals average an Energy Star score of 54, well below many other building types in the city. Several medical facilities rank far lower.',
 
             location: {
