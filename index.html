@@ -69,11 +69,6 @@
             color: black;
         }
 
-        p {
-            font-family: "Libre Baskerville","Georgia",serif;
-            font-weight: 100;
-            font-size: 16px;
-        }
 
         #footer, #footer p {
             width: 100%;
@@ -120,7 +115,6 @@
             padding-top:100vh;
             padding-bottom: 50vh;
             /* margin-bottom: 10vh; */
-            opacity: 0.5;
         }
 
         .step.active {
@@ -129,16 +123,19 @@
         }
 
 
-    .step div {
+    .step div, p {
+        font-family: "Libre Baskerville","Georgia",serif;
         padding: 25px 50px;
         text-align: center;
         line-height: 25px;
-        font-size: 13px;
         background-color: white;
         overflow: hidden;
         box-sizing: border-box;
         border: 2px solid rgba(255, 255, 255, 0.35);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.18);
+        font-weight: 100;
+        font-size: 16px;
+        }
     }
 
         .step img {
