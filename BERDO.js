@@ -30,7 +30,7 @@ var config = {
             description: 'These buildings tend to perform relatively well in the city’s energy data, with an average Energy Star score of  71.',
             location: {
                 center: [-71.07148, 42.34628],
-                zoom: 9,
+                zoom: 9.5,
                 pitch: 0,
                 bearing: 0
             },
@@ -115,11 +115,11 @@ var config = {
             id: 'fourth-chapter',
             alignment: 'right',
             hidden: false,
-            title: 'Boston Medical Center also appears near the bottom of the rankings, with a score of <span style="color: #e51f1f">8.</span>',
+            title: 'Boston Medical Center also appears near the bottom of the rankings, with a score of <span style="color: #e51f1f;">8.</span>',
             description: 'The hospital owns several properties included in the dataset, including the one complex and the <b>Moakley Building</b> in the South End, both of which received Energy Star scores of 8 out of 100, placing them among the lowest-performing medical facilities in the city.<br>The hospital declined to comment on questions about the buildings’ energy performance, their low Energy Star scores, or any plans to reduce emissions from those facilities.',
             location: {
                 center: [-71.07380, 42.33434],
-                zoom: 16.5,
+                zoom: 16.4,
                 pitch: 0,
                 bearing: 0
             },
