@@ -30,12 +30,12 @@ var config = {
             description: 'These buildings tend to perform relatively well in the city’s energy data, with an average Energy Star score of  71.',
             location: {
                 center: [-71.07148, 42.34628],
-                zoom: 10.99,
+                zoom: 8,
                 pitch: 0,
                 bearing: 0
             },
             mapAnimation: 'flyTo',
-            rotateAnimation: false,
+            rotateAnimation: true,
             callback: '',
             onChapterEnter: [
                 {
