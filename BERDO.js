@@ -116,7 +116,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Boston Medical Center also appears near the bottom of the rankings, with a score of <span style="color: #e51f1f;">8.</span>',
-            description: 'The hospital owns several properties included in the dataset, including the one complex and the <b>Moakley Building</b> in the South End, both of which received Energy Star scores of 8 out of 100, placing them among the lowest-performing medical facilities in the city.<br>The hospital declined to comment on questions about the buildings’ energy performance, their low Energy Star scores, or any plans to reduce emissions from those facilities.',
+            description: 'The hospital owns several properties included in the dataset, including the one complex and the <b><span style="color: #e51f1f;">Moakley Building</span></b> in the South End, both of which received Energy Star scores of 8 out of 100, placing them among the lowest-performing medical facilities in the city.<br>The hospital declined to comment on questions about the buildings’ energy performance, their low Energy Star scores, or any plans to reduce emissions from those facilities. <b><span style="font-size: 10px;">*some buildings within the property did not report their scores, so they did not receive color values.</span>',
             location: {
                 center: [-71.07380, 42.33434],
                 zoom: 16.4,
